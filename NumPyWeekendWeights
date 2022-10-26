@@ -1,0 +1,28 @@
+#Importing numpy and establishing a random array of values clustered around 185
+import numpy as np
+dailywts = 185 - np.arange(5*7)/5
+print("Weights from each day, starting on a Monday: ","\n",dailywts,"\n")
+    
+#Establish arrays that contain the index values for all Saturdays and Sundays in the dataset
+satsindex = np.arange(5,len(dailywts),7)
+sunsindex = np.arange(6,len(dailywts),7)
+    
+#Instantiating empty arrays to store the Saturday and Sunday weight values
+sats = []
+suns = []
+    
+#Make an array that retrieves the weight value at those indexes - AKA, retrieves a list of all Saturday/Sunday weights
+for sat in satsindex:
+  sats.append(dailywts[sat])
+for sun in sunsindex:
+  suns.append(dailywts[sun])
+
+#Checking to make sure we grabbed the right values - we should see every 7th value starting at index 5 and 6 respectively 
+print("Weights from each Saturday: ","\n",sats,"\n")
+print("Weights from each Sunday: ","\n",suns,"\n")
+
+#Making the average of each weekend weight by looping through both Saturday and Sunday lists
+avgweekendweights = []
+for satwt,sunwt in zip(sats,suns):
+  avgweekendweights.append((satwt+sunwt)/2)
+print("Average weights from each weekend","\n",avgweekendweights)
